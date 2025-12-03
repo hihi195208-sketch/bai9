@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Bài giải – Luyện tập & Vận dụng – Tin học 12 trang 56</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        line-height: 1.5;
+    }
+    h1 {
+        color: #0066cc;
+    }
+    pre {
+        background: #f3f3f3;
+        padding: 12px;
+        border-left: 4px solid #0066cc;
+        overflow-x: auto;
+    }
+    table {
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+    th, td {
+        padding: 6px 10px;
+    }
+</style>
+
+</head>
+<body>
+
+<h1>📘 Bài giải – Luyện tập & Vận dụng – Tin học 12 (Trang 56)</h1>
+
+<hr>
+
+<h2>I. Luyện tập</h2>
+<p><b>Yêu cầu:</b> Sửa chương trình trong Hình 9.5a để dùng thuộc tính <code>style</code> thay vì <code>border</code>.  
+Dùng màu xanh cho các ô hai dòng đầu và màu đỏ – vàng – xanh cho ba ô Toán, Vật lí, Hóa học.</p>
+
+<p><b>Đáp án HTML:</b></p>
+
+<pre>
+&lt;table style="border-collapse: collapse;"&gt;
+    &lt;tr&gt;
+        &lt;th rowspan="2" style="border: 2px solid blue;"&gt;Họ tên&lt;/th&gt;
+        &lt;th rowspan="2" style="border: 2px solid blue;"&gt;Điểm thi&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td style="border: 2px solid red;"&gt;Toán&lt;/td&gt;
+        &lt;td style="border: 2px solid yellow;"&gt;Vật lí&lt;/td&gt;
+        &lt;td style="border: 2px solid green;"&gt;Hóa học&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+</pre>
+
+<h3>✔ Minh họa kết quả:</h3>
+
+<table style="border-collapse: collapse;">
+    <tr>
+        <th rowspan="2" style="border: 2px solid blue;">Họ tên</th>
+        <th rowspan="2" style="border: 2px solid blue;">Điểm thi</th>
+    </tr>
+    <tr>
+        <td style="border: 2px solid red;">Toán</td>
+        <td style="border: 2px solid yellow;">Vật lí</td>
+        <td style="border: 2px solid green;">Hóa học</td>
+    </tr>
+</table>
+
+<hr>
+
+<h2>II. Vận dụng</h2>
+
+<p><b>Yêu cầu:</b> Cho trước bảng dữ liệu kích thước n×4 (Họ tên – Toán – Vật lý – Hóa học).  
+Viết chương trình Python tạo file HTML giống bảng Hình 9.5 và bổ sung dữ liệu ở các dòng bên dưới.</p>
+
+<p><b>Chương trình Python hoàn chỉnh:</b></p>
+
+<pre>
+def generate_html_table(data, output_path):
+    content = """
+&lt;table style="border-collapse: collapse;"&gt;
+&lt;tr&gt;
+    &lt;th style="border: 2px solid green;" rowspan="2"&gt;Họ và tên&lt;/th&gt;
+    &lt;th style="border: 2px solid green;" colspan="3"&gt;Điểm thi&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td style="border: 2px solid red;"&gt;Toán&lt;/td&gt;
+    &lt;td style="border: 2px solid yellow;"&gt;Vật lí&lt;/td&gt;
+    &lt;td style="border: 2px solid green;"&gt;Hóa học&lt;/td&gt;
+&lt;/tr&gt;
+"""
+
+    for row in data:
+        content += "&lt;tr&gt;"
+        for cell in row:
+            content += f'&lt;td style="border: 1px solid black;"&gt;{cell}&lt;/td&gt;'
+        content += "&lt;/tr&gt;\n"
+
+    content += "&lt;/table&gt;"
+
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(content)
+
+
+data_input = [
+    ['Nguyễn Văn A', 10, 9, 8],
+    ['Trần Văn B', 9, 9.5, 8.5],
+    ['Phạm Thị C', 9.5, 9.5, 9]
+]
+
+generate_html_table(data_input, r"D:\\TIN12-KNTT\\B9-Vandung.html")
+</pre>
+
+<h3>✔ Kết quả khi chạy Python:</h3>
+
+<table style="border-collapse: collapse;">
+<tr>
+    <th style="border: 2px solid green;" rowspan="2">Họ và tên</th>
+    <th style="border: 2px solid green;" colspan="3">Điểm thi</th>
+</tr>
+<tr>
+    <td style="border: 2px solid red;">Toán</td>
+    <td style="border: 2px solid yellow;">Vật lí</td>
+    <td style="border: 2px solid green;">Hóa học</td>
+</tr>
+<tr>
+    <td style="border: 1px solid black;">Nguyễn Văn A</td>
+    <td style="border: 1px solid black;">10</td>
+    <td style="border: 1px solid black;">9</td>
+    <td style="border: 1px solid black;">8</td>
+</tr>
+<tr>
+    <td style="border: 1px solid black;">Trần Văn B</td>
+    <td style="border: 1px solid black;">9</td>
+    <td style="border: 1px solid black;">9.5</td>
+    <td style="border: 1px solid black;">8.5</td>
+</tr>
+<tr>
+    <td style="border: 1px solid black;">Phạm Thị C</td>
+    <td style="border: 1px solid black;">9.5</td>
+    <td style="border: 1px solid black;">9.5</td>
+    <td style="border: 1px solid black;">9</td>
+</tr>
+</table>
+
+<hr>
+
+<p><i>✨</i></p>
+
+</body>
+</html>
